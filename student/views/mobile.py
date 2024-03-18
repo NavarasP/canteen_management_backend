@@ -126,17 +126,20 @@ class OrderListAPI(ExceptionHandlerMixin, APIView):
 
 class OrderDetailAPI(ExceptionHandlerMixin, APIView):
     """API for order detail"""
+    print('done')
 
     authentication_classes = [CustomTokenAuthentication]
 
     permission_classes = [IsAuthenticated]
-
+    
     def get(self, request, id):
         try:
             user = request.user
+            
             data = get_order_detail_for_student(user, id)
             serializer = OrderDetailSerializer(data)
             res = serialize_mobile_api(True, serializer.data, "SUCCESS")
+            
             return Response(status=status.HTTP_200_OK, data=res)
         except Exception as e:
             msg = handle_error(e)

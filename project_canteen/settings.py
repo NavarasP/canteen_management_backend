@@ -9,6 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_METHODS = True
+# APPEND_SLASH=False
 
 
 DJANGO_APPS = [
@@ -21,6 +24,8 @@ DJANGO_APPS = [
 ]
 
 
+
+
 LOCAL_APPS = [
     "common.apps.CommonConfig",
     "accounts.apps.AccountsConfig",
@@ -28,7 +33,9 @@ LOCAL_APPS = [
     "teacher.apps.TeacherConfig",
     "student.apps.StudentConfig",
     "delivery_agent.apps.DeliveryAgentConfig",
+    "corsheaders",
 ]
+
 
 INSTALLED_APPS = DJANGO_APPS  + LOCAL_APPS
 
@@ -40,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 AUTH_USER_MODEL = "accounts.User"

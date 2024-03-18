@@ -85,7 +85,9 @@ def get_order_detail_for_student(user, order_id):
         raise ValidationError(NOT_STUDENT_MSG)
     order_not_found = "Order not found"
     try:
-        order = Order.objects.get(id=order_id)
+        print(order_id)
+        order = Order.objects.get(order_id=order_id)
+        print(order)
     except Order.DoesNotExist:
         raise ValidationError(order_not_found)
     if order.student.user != user:
@@ -108,7 +110,7 @@ def change_order_status(user, order_id, status, remarks=None):
         raise ValidationError(NOT_CANTEEN_MANAGER_MSG)
     order_not_found = "Order not found"
     try:
-        order = Order.objects.get(id=order_id)
+        order = Order.objects.get(order_id=order_id)
     except Order.DoesNotExist:
         raise ValidationError(order_not_found)
     if status not in [choice.value for choice in Status]:
@@ -138,7 +140,7 @@ def get_order_detail_for_manager(user, order_id):
         raise ValidationError(NOT_CANTEEN_MANAGER_MSG)
     order_not_found = "Order not found"
     try:
-        order = Order.objects.get(id=order_id, is_active=True)
+        order = Order.objects.get(order_id=order_id, is_active=True)
     except Order.DoesNotExist:
         raise ValidationError(order_not_found)
     return order
@@ -161,7 +163,7 @@ def change_order_status_for_agent(user, order_id, status):
         raise ValidationError(NOT_DELIVERY_AGENT_MSG)
     order_not_found = "Order not found"
     try:
-        order = Order.objects.get(id=order_id, is_active=True)
+        order = Order.objects.get(order_id=order_id, is_active=True)
     except Order.DoesNotExist:
         raise ValidationError(order_not_found)
     if status not in [Status.PICKED, Status.DELIVERED]:

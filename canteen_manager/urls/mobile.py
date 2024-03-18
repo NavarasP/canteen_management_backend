@@ -14,7 +14,7 @@ urlpatterns = [
         mobile.FoodMarkTodaysSpecialAPI.as_view(),
     ),
     path("order/list/", mobile.OrderListAPI.as_view()),
-    path("order/detail/<int:id>/", mobile.OrderDetailAPI.as_view()),
+    path("order/detail/<str:id>/", mobile.OrderDetailAPI.as_view()),
     path("order/status/dropdown/", mobile.OrderStatusDropdownAPI.as_view()),
-    path("order/status/change/<int:id>/", mobile.OrderStatusChangeAPI.as_view()),
+    path("order/status/change/<str:id>/", mobile.OrderStatusChangeAPI.as_view()),
 ]

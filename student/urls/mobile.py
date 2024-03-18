@@ -8,5 +8,5 @@ urlpatterns = [
     path("food/list/", mobile.FoodListAPI.as_view()),
     path("order/", mobile.FoodOrderAPI.as_view()),
     path("order/list/", mobile.OrderListAPI.as_view()),
-    path("order/detail/<int:id>/", mobile.OrderDetailAPI.as_view()),
+    path("order/detail/<str:id>", mobile.OrderDetailAPI.as_view()),
 ]
